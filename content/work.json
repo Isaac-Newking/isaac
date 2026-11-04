@@ -1,0 +1,651 @@
+{
+ "fission": [
+  {
+   "src": "/img/work/fission/1-didtal-asset.jpg",
+   "name": "1-didtal-asset",
+   "w": 1400,
+   "h": 788,
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/fission/1-reflective.jpg",
+   "name": "1-reflective",
+   "w": 1360,
+   "h": 680,
+   "bg": "#edf2e1",
+   "fg": "#222912",
+   "ac": "#749924",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/fission/2-risk-control.jpg",
+   "name": "2-risk-control",
+   "w": 1360,
+   "h": 680,
+   "bg": "#F1F1EE",
+   "fg": "#141414",
+   "ac": null,
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/fission/2-shared-governance.jpg",
+   "name": "2-shared-governance",
+   "w": 1400,
+   "h": 788,
+   "bg": "#0f160b",
+   "fg": "#e9f2e4",
+   "ac": "#95ea5e",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/fission/3-trading.jpg",
+   "name": "3 trading",
+   "w": 1400,
+   "h": 788,
+   "bg": "#e9f2e1",
+   "fg": "#1d2912",
+   "ac": "#5e9929",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/fission/decentralized.jpg",
+   "name": "Decentralized.",
+   "w": 1400,
+   "h": 1400,
+   "bg": "#F1F1EE",
+   "fg": "#141414",
+   "ac": null,
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/fission/fission-announcement.jpg",
+   "name": "Fission-Announcement",
+   "w": 1360,
+   "h": 680,
+   "bg": "#F1F1EE",
+   "fg": "#141414",
+   "ac": null,
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/fission/fission-jt-redo-2.jpg",
+   "name": "Fission-JT-redo-2",
+   "w": 1360,
+   "h": 680,
+   "bg": "#edf2e1",
+   "fg": "#222912",
+   "ac": "#7c993d",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/fission/fission-tokenomics.jpg",
+   "name": "Fission-Tokenomics",
+   "w": 1400,
+   "h": 788,
+   "bg": "#11160b",
+   "fg": "#ecf2e4",
+   "ac": "#9dd15a",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/fission/partnership-stratos.jpg",
+   "name": "Partnership-stratos",
+   "w": 1360,
+   "h": 680,
+   "bg": "#edf2e1",
+   "fg": "#222912",
+   "ac": "#7c993d",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/fission/zeal-community-white.jpg",
+   "name": "Zeal-Community-white",
+   "w": 1360,
+   "h": 680,
+   "bg": "#edf2e1",
+   "fg": "#212912",
+   "ac": "#7b993d",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/fission/design-2.jpg",
+   "name": "design-2",
+   "w": 1400,
+   "h": 1400,
+   "bg": "#0b160d",
+   "fg": "#e4f2e7",
+   "ac": "#5ed777",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/fission/temp.jpg",
+   "name": "temp",
+   "w": 1400,
+   "h": 788,
+   "bg": "#11160b",
+   "fg": "#ecf2e4",
+   "ac": "#9cf90e",
+   "mock": "plain"
+  }
+ ],
+ "web3": [
+  {
+   "src": "/img/work/web3/facebook-cover-banner.jpg",
+   "name": "Facebook-cover-banner",
+   "w": 851,
+   "h": 315,
+   "bg": "#100b16",
+   "fg": "#ebe4f2",
+   "ac": "#812cd1",
+   "mock": "x"
+  },
+  {
+   "src": "/img/work/web3/launch-copy-ai.jpg",
+   "name": "Launch-Copy-AI",
+   "w": 1360,
+   "h": 680,
+   "bg": "#0b0d16",
+   "fg": "#e4e6f2",
+   "ac": "#042bd1",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/web3/main-launch-tax.jpg",
+   "name": "Main-launch-tax",
+   "w": 1400,
+   "h": 788,
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/web3/profit-ai-score.jpg",
+   "name": "Profit AI score",
+   "w": 1270,
+   "h": 829,
+   "bg": "#160e0b",
+   "fg": "#f2e9e4",
+   "ac": "#d18056",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/web3/now-live-devkit.jpg",
+   "name": "NOW LIVE DEVKIT",
+   "w": 800,
+   "h": 1000,
+   "bg": "#16100b",
+   "fg": "#f2ebe4",
+   "ac": "#d18e4e",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/web3/pacman-banner.jpg",
+   "name": "Pacman-Banner",
+   "w": 1360,
+   "h": 680,
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/web3/oxhsadow.jpg",
+   "name": "oxhsadow",
+   "w": 1400,
+   "h": 467,
+   "bg": "#160e0b",
+   "fg": "#f2e8e4",
+   "ac": "#d16e46",
+   "mock": "x"
+  }
+ ],
+ "uiux": [
+  {
+   "src": "/img/work/uiux/new-pairs.jpg",
+   "name": "New Pairs",
+   "w": 1600,
+   "h": 1138,
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "browser"
+  },
+  {
+   "src": "/img/work/uiux/sniper.jpg",
+   "name": "Sniper",
+   "w": 1600,
+   "h": 1138,
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "browser"
+  },
+  {
+   "src": "/img/work/uiux/wallet-manager.jpg",
+   "name": "Wallet Manager",
+   "w": 1600,
+   "h": 1138,
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "browser"
+  },
+  {
+   "src": "/img/work/uiux/token-holdings.jpg",
+   "name": "Token Holdings",
+   "w": 1600,
+   "h": 1138,
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "browser"
+  },
+  {
+   "src": "/img/work/uiux/home.jpg",
+   "name": "Home",
+   "w": 387,
+   "h": 824,
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "phone"
+  },
+  {
+   "src": "/img/work/uiux/sniper-mobile.jpg",
+   "name": "Sniper Mobile",
+   "w": 387,
+   "h": 824,
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "phone"
+  },
+  {
+   "src": "/img/work/uiux/wallet-manager-mobile.jpg",
+   "name": "Wallet Manager",
+   "w": 387,
+   "h": 824,
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "phone"
+  },
+  {
+   "src": "/img/work/uiux/token-holdings-mobile.jpg",
+   "name": "Token Holdings",
+   "w": 387,
+   "h": 824,
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "phone"
+  },
+  {
+   "src": "/img/work/uiux/axislink-ui.jpg",
+   "name": "Axislink UI",
+   "w": 1600,
+   "h": 496,
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "browser"
+  },
+  {
+   "src": "/img/work/uiux/web-ui-axis-link.jpg",
+   "name": "web-ui-axis-link",
+   "w": 786,
+   "h": 1600,
+   "bg": "#100b16",
+   "fg": "#ebe4f2",
+   "ac": "#955ed1",
+   "mock": "phone"
+  },
+  {
+   "src": "/img/work/uiux/dappbuilder-2.jpg",
+   "name": "DAppbuilder (2)",
+   "w": 1600,
+   "h": 1075,
+   "bg": "#0b160e",
+   "fg": "#e4f2e8",
+   "ac": "#5ed181",
+   "mock": "browser"
+  },
+  {
+   "src": "/img/work/uiux/nft.jpg",
+   "name": "NFT",
+   "w": 1600,
+   "h": 1143,
+   "bg": "#e1f2ec",
+   "fg": "#122920",
+   "ac": "#019961",
+   "mock": "browser"
+  }
+ ],
+ "flyers": [
+  {
+   "src": "/img/work/flyers/ban-3jpg.jpg",
+   "name": "ban-3jpg",
+   "w": 1400,
+   "h": 467,
+   "bg": "#130b16",
+   "fg": "#efe4f2",
+   "ac": "#cb42f8",
+   "mock": "x"
+  },
+  {
+   "src": "/img/work/flyers/sendor-twitter.jpg",
+   "name": "$SENDOR-twitter",
+   "w": 1400,
+   "h": 467,
+   "bg": "#0b160e",
+   "fg": "#e4f2e8",
+   "ac": "#0ed147",
+   "mock": "x"
+  },
+  {
+   "src": "/img/work/flyers/twitter-axis.jpg",
+   "name": "twitter-axis",
+   "w": 1400,
+   "h": 467,
+   "bg": "#0d0b16",
+   "fg": "#e7e4f2",
+   "ac": "#795ed1",
+   "mock": "x"
+  },
+  {
+   "src": "/img/work/flyers/edited-cover-banner-2.jpg",
+   "name": "edited-cover-banner-2",
+   "w": 851,
+   "h": 315,
+   "bg": "#110b16",
+   "fg": "#ece4f2",
+   "ac": "#872fd1",
+   "mock": "x"
+  },
+  {
+   "src": "/img/work/flyers/launch-rango.jpg",
+   "name": "launch rango",
+   "w": 1400,
+   "h": 787,
+   "bg": "#160d0b",
+   "fg": "#f2e7e4",
+   "ac": "#d14018",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/flyers/launch-sf.jpg",
+   "name": "launch-sf",
+   "w": 1360,
+   "h": 680,
+   "bg": "#0d0b16",
+   "fg": "#e6e4f2",
+   "ac": "#5c44d1",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/flyers/twitter-banner.jpg",
+   "name": "twitter-banner",
+   "w": 1400,
+   "h": 467,
+   "bg": "#160b0b",
+   "fg": "#f2e4e4",
+   "ac": "#d11115",
+   "mock": "x"
+  },
+  {
+   "src": "/img/work/flyers/twitter-terra-scan.jpg",
+   "name": "twitter-terra-scan",
+   "w": 1400,
+   "h": 467,
+   "bg": "#0b1216",
+   "fg": "#e4edf2",
+   "ac": "#27a9eb",
+   "mock": "x"
+  },
+  {
+   "src": "/img/work/flyers/joji-goe-to-japan-3.jpg",
+   "name": "Joji-goe-to-japan-3",
+   "w": 1400,
+   "h": 1400,
+   "bg": "#f2e4e1",
+   "fg": "#291512",
+   "ac": "#993d2f",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/flyers/scentify-logo.jpg",
+   "name": "Scentify-logo",
+   "w": 1400,
+   "h": 1400,
+   "bg": "#ece1f2",
+   "fg": "#201229",
+   "ac": "#763d99",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/flyers/new-hip-and-happy.jpg",
+   "name": "new-hip-and-happy",
+   "w": 1294,
+   "h": 1400,
+   "bg": "#F1F1EE",
+   "fg": "#141414",
+   "ac": null,
+   "mock": "plain"
+  }
+ ],
+ "branding": [
+  {
+   "src": "/img/work/branding/eh-billboard.jpg",
+   "name": "Billboard, The Luxury Promise",
+   "w": 1400,
+   "h": 784,
+   "group": "Esorae Home",
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eh-personality.jpg",
+   "name": "Brand personality",
+   "w": 1400,
+   "h": 784,
+   "group": "Esorae Home",
+   "bg": "#16110b",
+   "fg": "#f2ece4",
+   "ac": "#d19a51",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eh-vision.jpg",
+   "name": "Vision and mission",
+   "w": 1400,
+   "h": 784,
+   "group": "Esorae Home",
+   "bg": "#F1F1EE",
+   "fg": "#141414",
+   "ac": null,
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eh-rollup.jpg",
+   "name": "Roll-up banner",
+   "w": 1028,
+   "h": 1076,
+   "group": "Esorae Home",
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eh-pillow.jpg",
+   "name": "Product campaign",
+   "w": 894,
+   "h": 1076,
+   "group": "Esorae Home",
+   "bg": "#f2e5e1",
+   "fg": "#291712",
+   "ac": "#993a20",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eh-post1.jpg",
+   "name": "Social, World Skin Health Day",
+   "w": 466,
+   "h": 580,
+   "group": "Esorae Home",
+   "bg": "#160f0b",
+   "fg": "#f2eae4",
+   "ac": "#d18f5e",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eh-post2.jpg",
+   "name": "Social, Breakfast Is Served",
+   "w": 466,
+   "h": 580,
+   "group": "Esorae Home",
+   "bg": "#f2ebe1",
+   "fg": "#291f12",
+   "ac": "#99703d",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eh-post3.jpg",
+   "name": "Social, room spray",
+   "w": 466,
+   "h": 580,
+   "group": "Esorae Home",
+   "bg": "#f2ece1",
+   "fg": "#292112",
+   "ac": "#7d6232",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eh-post4.jpg",
+   "name": "Social, Intentional Comfort",
+   "w": 466,
+   "h": 586,
+   "group": "Esorae Home",
+   "bg": "#16110b",
+   "fg": "#f2ece4",
+   "ac": "#d1a25e",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eh-post5.jpg",
+   "name": "Social, Democracy Day",
+   "w": 466,
+   "h": 586,
+   "group": "Esorae Home",
+   "bg": "#16110b",
+   "fg": "#f2ece4",
+   "ac": "#d1963d",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eh-post6.jpg",
+   "name": "Social, Ricamo Collection",
+   "w": 466,
+   "h": 586,
+   "group": "Esorae Home",
+   "bg": "#f2ebe1",
+   "fg": "#291f12",
+   "ac": "#856235",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/ef-logos.jpg",
+   "name": "Logo, light and dark",
+   "w": 1400,
+   "h": 787,
+   "group": "Esorae Foundation",
+   "bg": "#e1f2e9",
+   "fg": "#12291d",
+   "ac": "#009345",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/ef-pattern.jpg",
+   "name": "Brand pattern and illustrative style",
+   "w": 1400,
+   "h": 781,
+   "group": "Esorae Foundation",
+   "bg": "#f2eae1",
+   "fg": "#291e12",
+   "ac": "#995911",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/ef-flyer1.jpg",
+   "name": "Flyer, Independence Day",
+   "w": 572,
+   "h": 714,
+   "group": "Esorae Foundation",
+   "bg": "#f2ebe1",
+   "fg": "#292012",
+   "ac": "#99733d",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/ef-flyer2.jpg",
+   "name": "Flyer, Empower the Next Generation",
+   "w": 570,
+   "h": 714,
+   "group": "Esorae Foundation",
+   "bg": "#0b160f",
+   "fg": "#e4f2ea",
+   "ac": "#5ed18e",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/ef-flyer3.jpg",
+   "name": "Flyer, Education",
+   "w": 572,
+   "h": 714,
+   "group": "Esorae Foundation",
+   "bg": "#f2e9e1",
+   "fg": "#291c12",
+   "ac": "#865936",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eu-poster1.jpg",
+   "name": "Poster, We Don't Just Construct Buildings",
+   "w": 612,
+   "h": 800,
+   "group": "eurban",
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eu-poster2.jpg",
+   "name": "Poster, Something Is Coming",
+   "w": 610,
+   "h": 800,
+   "group": "eurban",
+   "bg": "#0B0B0B",
+   "fg": "#F1F1EE",
+   "ac": null,
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eu-poster3.jpg",
+   "name": "Poster, You Dream It, We Build It",
+   "w": 610,
+   "h": 800,
+   "group": "eurban",
+   "bg": "#0b1216",
+   "fg": "#e4edf2",
+   "ac": "#5ea7d1",
+   "mock": "plain"
+  }
+ ]
+}
