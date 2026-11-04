@@ -49,8 +49,13 @@ a { color: inherit }
 .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; font-size: 14px }
 .nav a { text-decoration: none }
 .nav a:hover { text-decoration: underline; text-underline-offset: 4px }
-.theme { width: 34px; height: 34px; display: grid; place-items: center; border: 1.5px solid currentColor }
-.theme svg { width: 16px; height: 16px }
+/* light/dark switch: pixel sun and moon, a square knob slides over the active one */
+.toggle { position: relative; width: 64px; height: 32px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; justify-items: center; border: 1.5px solid currentColor; padding: 0 }
+.toggle .ic { width: 12px; height: 12px; fill: currentColor; position: relative; z-index: 1; transition: fill .25s }
+.toggle .knob { position: absolute; top: 3px; left: 3px; width: 24px; height: 23px; background: currentColor; transition: transform .3s cubic-bezier(.2,.7,.2,1) }
+.toggle.is-dark .knob { transform: translateX(31px) }
+.toggle:not(.is-dark) .sun, .toggle.is-dark .moon { fill: #000 }
+.toggle.is-unset .knob { opacity: 0 }
 @media (max-width: 760px) { .nav ul { display: none } }
 
 /* loader */
@@ -77,18 +82,20 @@ a { color: inherit }
 .coords, .scrollhint { position: absolute; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); font-family: var(--f-pixel); font-size: 11px; color: rgba(255,255,255,.6); font-variant-numeric: tabular-nums }
 .coords { left: var(--gutter) }
 .scrollhint { right: var(--gutter-r) }
-.title { position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%); will-change: transform, opacity }
+.title { position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%); will-change: transform, opacity;
+  mask-size: 160% 200%; mask-position: 50% 50%; mask-repeat: no-repeat; mask-clip: no-clip; -webkit-mask-size: 160% 200%; -webkit-mask-position: 50% 50%; -webkit-mask-repeat: no-repeat }
 .title h1 { margin: 0; font-family: var(--f-display); font-weight: 800; font-size: clamp(64px, 13.2vw, 210px); line-height: .8; letter-spacing: -.055em; white-space: nowrap }
 .title h1 span { display: block }
 .title h1 span + span { margin-left: -.04em }
-.title .by { position: absolute; top: -.2em; right: .2em; font-family: var(--f-display); font-weight: 600; font-size: clamp(9px, 1vw, 14px); letter-spacing: .32em; text-transform: uppercase }
+.title .by { position: absolute; bottom: calc(100% - .02em); right: .4em; font-family: var(--f-display); font-weight: 600; font-size: clamp(12px, 1.45vw, 22px); letter-spacing: .2em; text-transform: uppercase; white-space: nowrap }
 .sticker { position: absolute; right: -.55em; top: 41%; font-family: var(--f-display); font-weight: 800; font-size: clamp(22px, 3.4vw, 52px); letter-spacing: -.03em; color: #000; background: #fff; padding: .02em .28em .06em; transform: rotate(-6deg);
   box-shadow: 0 -3px 0 0 #fff, 0 3px 0 0 #fff, -3px 0 0 0 #fff, 3px 0 0 0 #fff, 6px 6px 0 0 rgba(255,255,255,.35) }
 .sticker::before { content: ""; position: absolute; inset: 3px; border: 1.5px solid #000 }
-.title canvas { position: absolute; inset: -8% -6%; width: 112%; height: 116%; pointer-events: none }
-.band { position: absolute; left: 0; right: 0; top: 72%; overflow: hidden; padding: 9px 0; background-color: #050505; border-block: 1px solid rgba(255,255,255,.12) }
-.band .track { display: flex; gap: 28px; width: max-content; animation: marquee 32s linear infinite; font-family: var(--f-display); font-weight: 600; font-size: clamp(14px, 1.5vw, 20px); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; align-items: center }
-.band .track i { display: inline-block; width: 9px; height: 9px; background: var(--signal); box-shadow: 9px 0 0 0 var(--signal), 0 9px 0 0 var(--signal); transform: translateY(-4px); margin-right: 9px }
+/* roles marquee: a plain bar, clean text, a small pixel spark between words */
+.band { position: absolute; left: 0; right: 0; top: 72%; overflow: hidden; padding: 12px 0; background: #141414 }
+.band .track { display: flex; width: max-content; animation: marquee 36s linear infinite; font-family: var(--f-display); font-weight: 500; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; align-items: center; color: rgba(255,255,255,.9) }
+.band .role { display: inline-flex; align-items: center; gap: 26px; padding-right: 26px }
+.band .role i { display: inline-block; width: 3px; height: 3px; background: var(--signal); box-shadow: 3px 0 0 var(--signal), -3px 0 0 var(--signal), 0 3px 0 var(--signal), 0 -3px 0 var(--signal) }
 @keyframes marquee { to { transform: translateX(-50%) } }
 
 /* hello */

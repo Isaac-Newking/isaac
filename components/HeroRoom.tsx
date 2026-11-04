@@ -14,57 +14,72 @@ const PLATES: [string, string, 'l' | 'r', number, number, number][] = [
   ['fission', 'fission-tokenomics', 'r', 3100, 0.18, 400], ['web3', 'profit-ai-score', 'l', 3300, 0.2, 380],
 ];
 
-export default function HeroRoom({ ready }: { ready: boolean }) {
+// The title's mask covers a larger area than its box so the "2026" sticker and name label are included.
+const MASK_W = 1.6, MASK_H = 2.0, STEPS = 12;
+
+// Builds a sequence of masks where more and more square cells are knocked out,
+// so the title breaks apart pixel by pixel as the camera moves in.
+function buildMasks(w: number, h: number) {
+  const W = Math.round(w * MASK_W), H = Math.round(h * MASK_H);
+  const cell = Math.max(10, Math.round(Math.min(w, h) / 22));
+  const cols = Math.ceil(W / cell), rows = Math.ceil(H / cell);
+  const order: number[] = [];
+  for (let i = 0; i < cols * rows; i++) order.push(i);
+  // cells nearer the centre go last, so the edges crumble first
+  const score = (i: number) => { const x = (i % cols) / cols - 0.5, y = Math.floor(i / cols) / rows - 0.5; return Math.random() * 0.8 - Math.hypot(x, y); };
+  const s = order.map(score); order.sort((a, b) => s[a] - s[b]);
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const ctx = c.getContext('2d')!;
+  const masks: string[] = [];
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
+  let k = 0;
+  for (let step = 1; step < STEPS; step++) {
+    const target = Math.floor((step / (STEPS - 1)) * order.length);
+    for (; k < target; k++) { const i = order[k]; ctx.clearRect((i % cols) * cell, Math.floor(i / cols) * cell, cell, cell); }
+    masks.push(c.toDataURL('image/png'));
+  }
+  return masks; // masks[0] = a few cells gone … masks[last] = everything gone
+}
+
+export default function HeroRoom() {
   const hero = useRef<HTMLElement>(null);
   const room = useRef<HTMLDivElement>(null);
   const title = useRef<HTMLDivElement>(null);
-  const cover = useRef<HTMLCanvasElement>(null);
-  const band = useRef<HTMLDivElement>(null);
   const coords = useRef<HTMLDivElement>(null);
 
-  // Static-noise texture under the roles marquee, like the PDF
   useEffect(() => {
-    const n = document.createElement('canvas'); n.width = n.height = 96; const x = n.getContext('2d')!;
-    for (let i = 0; i < 1400; i++) { const v = (Math.random() * 255) | 0; x.fillStyle = `rgba(${v},${v},${v},${Math.random() * 0.5})`; x.fillRect((Math.random() * 96) | 0, (Math.random() * 96) | 0, 2, 2); }
-    band.current!.style.backgroundImage = `url(${n.toDataURL()})`;
-  }, []);
+    let mx = 0, my = 0, smx = 0, smy = 0, raf = 0, step = -1;
+    let masks: string[] = [];
+    const rm = reducedMotion();
+    const make = () => { const t = title.current; if (!t || rm) return; masks = buildMasks(t.offsetWidth, t.offsetHeight); step = -1; };
+    (document.fonts?.ready ?? Promise.resolve()).then(make);
+    let rt = 0 as unknown as ReturnType<typeof setTimeout>;
+    const onResize = () => { clearTimeout(rt); rt = setTimeout(make, 200); };
+    addEventListener('resize', onResize);
 
-  // Title arrives through a pixel dissolve once the loader is done
-  useEffect(() => {
-    const c = cover.current!; const r = c.getBoundingClientRect(); const dpr = Math.min(devicePixelRatio || 1, 2);
-    c.width = r.width * dpr; c.height = r.height * dpr; const ctx = c.getContext('2d')!;
-    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, c.width, c.height);
-    if (!ready) return;
-    if (reducedMotion()) { ctx.clearRect(0, 0, c.width, c.height); return; }
-    const cell = Math.round(18 * dpr), cols = Math.ceil(c.width / cell), rows = Math.ceil(c.height / cell);
-    const order: [number, number, number][] = [];
-    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) order.push([x, y, Math.random() + (x / cols) * 0.9]);
-    order.sort((a, b) => a[2] - b[2]);
-    let k = 0, raf = 0; const per = Math.ceil(order.length / 34);
-    const step = () => { for (let j = 0; j < per && k < order.length; j++, k++) ctx.clearRect(order[k][0] * cell, order[k][1] * cell, cell, cell); if (k < order.length) raf = requestAnimationFrame(step); };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [ready]);
-
-  // Camera zooms into the room on scroll; the mouse tilts it slightly
-  useEffect(() => {
-    let mx = 0, my = 0, smx = 0, smy = 0, raf = 0;
-    const move = (e: PointerEvent) => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; if (coords.current) coords.current.textContent = `x ${(mx + 0.5).toFixed(2)}  y ${(my + 0.5).toFixed(2)}`; };
+    const move = (e: PointerEvent) => {
+      mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5;
+      if (coords.current) coords.current.textContent = `x ${(mx + 0.5).toFixed(2)}  y ${(my + 0.5).toFixed(2)}`;
+    };
     addEventListener('pointermove', move, { passive: true });
+
     const frame = () => {
       smx += (mx - smx) * 0.06; smy += (my - smy) * 0.06;
-      if (!hero.current || !room.current || !title.current) return;
-      const hr = hero.current.getBoundingClientRect();
+      const t = title.current, r = room.current, h = hero.current;
+      if (!h || !r || !t) return;
+      const hr = h.getBoundingClientRect();
       if (hr.bottom > 0) {
         const p = clamp(-hr.top / (hr.height - innerHeight), 0, 1), e = p * p * (3 - 2 * p);
-        room.current!.style.transform = `translateZ(${e * 3400}px) rotateY(${smx * 4}deg) rotateX(${-smy * 3}deg)`;
-        title.current!.style.transform = `translate(calc(-50% + ${smx * -18}px), calc(-50% + ${smy * -12}px)) scale(${1 + p * 2.6})`;
-        title.current!.style.opacity = String(clamp(1 - p * 2.6, 0, 1));
+        r.style.transform = `translateZ(${e * 3400}px) rotateY(${smx * 4}deg) rotateX(${-smy * 3}deg)`;
+        t.style.transform = `translate(calc(-50% + ${smx * -18}px), calc(-50% + ${smy * -12}px)) scale(${1 + p * 2.2})`;
+        // pixel break-up between 2% and 26% of the scroll, fade-out between 14% and 30%
+        const s = masks.length ? Math.round(clamp((p - 0.02) / 0.24, 0, 1) * masks.length) : 0;
+        if (s !== step) { step = s; t.style.maskImage = s === 0 ? '' : `url(${masks[s - 1]})`; }
+        t.style.opacity = String(clamp(1 - (p - 0.14) / 0.16, 0, 1));
       }
       raf = requestAnimationFrame(frame);
     };
     raf = requestAnimationFrame(frame);
-    return () => { cancelAnimationFrame(raf); removeEventListener('pointermove', move); };
+    return () => { cancelAnimationFrame(raf); removeEventListener('pointermove', move); removeEventListener('resize', onResize); clearTimeout(rt); };
   }, []);
 
   const roles = [...SITE.roles, ...SITE.roles, ...SITE.roles, ...SITE.roles];
@@ -90,10 +105,9 @@ export default function HeroRoom({ ready }: { ready: boolean }) {
           <div className="by">{SITE.name}</div>
           <h1><span>Design</span><span>Portfolio</span></h1>
           <div className="sticker">2026</div>
-          <canvas ref={cover} aria-hidden="true" />
         </div>
-        <div className="band" ref={band}>
-          <div className="track">{roles.map((r, i) => <span key={i} style={{ display: 'contents' }}><span>{r}</span><i /></span>)}</div>
+        <div className="band">
+          <div className="track">{roles.map((r, i) => <span key={i} className="role">{r}<i aria-hidden="true" /></span>)}</div>
         </div>
         <div className="coords" ref={coords}>x 0.50  y 0.50</div>
         <div className="scrollhint">Scroll</div>

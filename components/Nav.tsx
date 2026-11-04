@@ -1,16 +1,33 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { SITE } from '@/content/site';
 
+const isDarkNow = () => {
+  const t = document.documentElement.dataset.theme;
+  return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+};
+
 export default function Nav() {
+  const [dark, setDark] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    setDark(isDarkNow());
+    const mq = matchMedia('(prefers-color-scheme: dark)');
+    const sync = () => setDark(isDarkNow());
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
+
   const toggle = () => {
-    const r = document.documentElement;
-    const dark = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    r.dataset.theme = dark ? 'light' : 'dark';
-    try { localStorage.setItem('theme', r.dataset.theme); } catch { /* storage blocked */ }
+    const next = !isDarkNow();
+    document.documentElement.dataset.theme = next ? 'dark' : 'light';
+    try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch { /* storage blocked */ }
+    setDark(next);
     window.dispatchEvent(new Event('themechange'));
   };
+
   return (
     <nav className="nav" aria-label="Main">
       <Link className="mark" href="/">{SITE.name}</Link>
@@ -21,8 +38,13 @@ export default function Nav() {
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button className="theme" type="button" onClick={toggle} aria-label="Switch light or dark mode">
-        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M7 0h2v3H7zM7 13h2v3H7zM0 7h3v2H0zM13 7h3v2h-3zM5 5h6v6H5zM2 2h2v2H2zM12 2h2v2h-2zM2 12h2v2H2zM12 12h2v2h-2z" /></svg>
+      <button type="button" role="switch" aria-checked={dark === true} aria-label="Dark mode" onClick={toggle}
+        className={`toggle${dark ? ' is-dark' : ''}${dark === null ? ' is-unset' : ''}`}>
+        {/* pixel sun */}
+        <svg className="ic sun" viewBox="0 0 9 9" aria-hidden="true"><path d="M4 0h1v1H4zM4 8h1v1H4zM0 4h1v1H0zM8 4h1v1H8zM1 1h1v1H1zM7 1h1v1H7zM1 7h1v1H1zM7 7h1v1H7zM3 3h3v3H3z" /></svg>
+        {/* pixel moon */}
+        <svg className="ic moon" viewBox="0 0 9 9" aria-hidden="true"><path d="M3 1h3v1H3zM2 2h2v1H2zM1 3h2v3H1zM2 6h2v1H2zM3 7h4v1H3zM6 6h2v1H6zM7 5h1v1H7z" /></svg>
+        <span className="knob" aria-hidden="true" />
       </button>
     </nav>
   );
