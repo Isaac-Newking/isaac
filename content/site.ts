@@ -30,4 +30,6 @@ export const FAQ: [string, string][] = [
 export const TESTIMONIALS: { quote: string; name: string; role: string }[] = [];
 
 // Esorae Home motion pieces. Add files to /public/motion and list them here.
-export const MOTION: { src: string; poster?: string; title: string }[] = [];
+export const MOTION: { src: string; poster?: string; title: string; w: number; h: number }[] = [
+  { src: '/motion/esorae-diffuser.mp4', poster: '/motion/esorae-diffuser.jpg', title: 'Fragrance collections reel: Stoneglow, Jambo, Cereria Molla', w: 1600, h: 770 },
+];

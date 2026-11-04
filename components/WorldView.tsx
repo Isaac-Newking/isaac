@@ -40,7 +40,7 @@ function Motion() {
   }
   return <>{MOTION.map((m) => (
     <figure className="motion-vid" key={m.src}>
-      <video src={m.src} poster={m.poster} muted loop playsInline preload="none" data-autoplay aria-label={m.title} />
+      <video src={m.src} poster={m.poster} width={m.w} height={m.h} muted loop playsInline preload="none" data-autoplay aria-label={m.title} />
       <figcaption>{m.title}</figcaption>
     </figure>
   ))}</>;
