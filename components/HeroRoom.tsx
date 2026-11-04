@@ -53,7 +53,8 @@ export default function HeroRoom({ ready }: { ready: boolean }) {
     addEventListener('pointermove', move, { passive: true });
     const frame = () => {
       smx += (mx - smx) * 0.06; smy += (my - smy) * 0.06;
-      const hr = hero.current!.getBoundingClientRect();
+      if (!hero.current || !room.current || !title.current) return;
+      const hr = hero.current.getBoundingClientRect();
       if (hr.bottom > 0) {
         const p = clamp(-hr.top / (hr.height - innerHeight), 0, 1), e = p * p * (3 - 2 * p);
         room.current!.style.transform = `translateZ(${e * 3400}px) rotateY(${smx * 4}deg) rotateX(${-smy * 3}deg)`;

@@ -31,7 +31,8 @@ export default function Services() {
     let raf = 0, lastY = scrollY, vel = 0;
     const frame = () => {
       const y = scrollY; vel += (y - lastY - vel) * 0.15; lastY = y;
-      const r = sec.current!.getBoundingClientRect(), vh = innerHeight;
+      if (!sec.current || !svg.current || !idx.current) return;
+      const r = sec.current.getBoundingClientRect(), vh = innerHeight;
       if (r.top < vh && r.bottom > 0) {
         const n = SITE.services.length;
         const p = clamp(-r.top / (r.height - vh), 0, 1), a = p * (n - 1);
