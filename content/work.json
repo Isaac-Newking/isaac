@@ -628,8 +628,8 @@
   {
    "src": "/img/work/branding/eu-poster2.jpg",
    "name": "Poster, Something Is Coming",
-   "w": 610,
-   "h": 800,
+   "w": 1200,
+   "h": 1500,
    "group": "eurban",
    "bg": "#0B0B0B",
    "fg": "#F1F1EE",
@@ -639,12 +639,23 @@
   {
    "src": "/img/work/branding/eu-poster3.jpg",
    "name": "Poster, You Dream It, We Build It",
-   "w": 610,
-   "h": 800,
+   "w": 1200,
+   "h": 1500,
    "group": "eurban",
    "bg": "#0b1216",
    "fg": "#e4edf2",
    "ac": "#5ea7d1",
+   "mock": "plain"
+  },
+  {
+   "src": "/img/work/branding/eu-poster4.jpg",
+   "name": "Poster, Meet the Locations",
+   "w": 1200,
+   "h": 1500,
+   "group": "eurban",
+   "bg": "#0b1116",
+   "fg": "#e4ecf2",
+   "ac": "#4e9cd1",
    "mock": "plain"
   }
  ]
