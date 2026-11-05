@@ -6,9 +6,10 @@ import { createContext, useCallback, useContext, useEffect, useRef } from 'react
 import { reducedMotion } from '@/lib/pixel';
 
 type Go = (href: string, color: string, x?: number, y?: number) => void;
-type Shell = { go: Go; lenis: () => Lenis | null };
+type Glide = (href: string, from: HTMLElement, bg: string, fg: string) => void;
+type Shell = { go: Go; glide: Glide; lenis: () => Lenis | null };
 
-const ShellCtx = createContext<Shell>({ go: () => {}, lenis: () => null });
+const ShellCtx = createContext<Shell>({ go: () => {}, glide: () => {}, lenis: () => null });
 export const useShell = () => useContext(ShellCtx);
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
@@ -16,7 +17,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const lenisRef = useRef<Lenis | null>(null);
   const wipeRef = useRef<HTMLDivElement>(null);
-  const pending = useRef<{ href: string; cells: HTMLElement[] } | null>(null);
+  const pending = useRef<{ href: string; cells: HTMLElement[]; layer?: HTMLElement } | null>(null);
 
   // Smooth scroll for the whole site
   useEffect(() => {
@@ -56,6 +57,32 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
     setTimeout(() => { pending.current = { href, cells }; router.push(href, { scroll: false }); }, 470);
   }, [router]);
 
+  // Next-project glide: the clicked title lifts into the new page's heading position while the
+  // next project's colour fills the screen; the new page then appears underneath without a jump.
+  const glide = useCallback<Glide>((href, from, bg, fg) => {
+    if (reducedMotion()) { router.push(href); return; }
+    router.prefetch(href);
+    const r = from.getBoundingClientRect();
+    const layer = document.createElement('div');
+    layer.className = 'glide';
+    layer.style.setProperty('--glide-bg', bg);
+    layer.style.color = fg;
+    const clone = from.cloneNode(true) as HTMLElement;
+    clone.classList.add('glide-title');
+    Object.assign(clone.style, { left: r.left + 'px', top: r.top + 'px', width: r.width + 'px' });
+    layer.appendChild(clone);
+    document.body.appendChild(layer);
+    // Every project page puts its heading in the same spot, so aim at this page's heading (at scroll 0).
+    const head = document.querySelector('.pj-intro .pj-title') as HTMLElement | null;
+    const hr = head?.getBoundingClientRect();
+    const tx = hr ? hr.left : 16, ty = hr ? hr.top + window.scrollY : 120;
+    requestAnimationFrame(() => {
+      layer.classList.add('on');
+      clone.style.transform = `translate(${tx - r.left}px, ${ty - r.top}px)`;
+    });
+    setTimeout(() => { pending.current = { href, cells: [], layer }; router.push(href, { scroll: false }); }, 720);
+  }, [router]);
+
   // When the new page is in, jump to its top (or its hash) and clear the squares
   useEffect(() => {
     const p = pending.current;
@@ -67,12 +94,13 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       const l = lenisRef.current;
       if (l) { l.resize(); l.scrollTo(target ?? 0, { immediate: true, force: true }); } else { target ? target.scrollIntoView() : window.scrollTo(0, 0); }
       p.cells.forEach((el) => setTimeout(() => el.classList.remove('on'), 60 + Math.random() * 360));
+      if (p.layer) { const layer = p.layer; setTimeout(() => { layer.classList.add('out'); setTimeout(() => layer.remove(), 420); }, 120); }
       setTimeout(() => { if (wipeRef.current) wipeRef.current.innerHTML = ''; }, 520);
     });
   }, [pathname]);
 
   return (
-    <ShellCtx.Provider value={{ go, lenis: () => lenisRef.current }}>
+    <ShellCtx.Provider value={{ go, glide, lenis: () => lenisRef.current }}>
       {children}
       <div className="wipe" ref={wipeRef} aria-hidden="true" />
     </ShellCtx.Provider>

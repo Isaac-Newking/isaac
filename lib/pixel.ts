@@ -6,7 +6,7 @@ let tiny: HTMLCanvasElement | null = null;
 export const reducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-export function drawPixel(canvas: HTMLCanvasElement, img: HTMLImageElement, block: number, cover = false) {
+export function drawPixel(canvas: HTMLCanvasElement, img: HTMLImageElement, block: number, cover = false, top = false) {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
   tiny ??= document.createElement('canvas');
@@ -17,7 +17,7 @@ export function drawPixel(canvas: HTMLCanvasElement, img: HTMLImageElement, bloc
   let sx = 0, sy = 0, sW = img.naturalWidth, sH = img.naturalHeight;
   if (cover) {
     const r = W / H, ir = sW / sH;
-    if (ir > r) { const nw = sH * r; sx = (sW - nw) / 2; sW = nw; } else { const nh = sW / r; sy = (sH - nh) / 2; sH = nh; }
+    if (ir > r) { const nw = sH * r; sx = (sW - nw) / 2; sW = nw; } else { const nh = sW / r; sy = top ? 0 : (sH - nh) / 2; sH = nh; }
   }
   tctx.imageSmoothingEnabled = true;
   tctx.drawImage(img, sx, sy, sW, sH, 0, 0, sw, sh);
@@ -28,12 +28,12 @@ export function drawPixel(canvas: HTMLCanvasElement, img: HTMLImageElement, bloc
 
 const STEPS = [56, 40, 28, 20, 14, 10, 7, 5, 3, 2, 1];
 
-export function depixel(canvas: HTMLCanvasElement, img: HTMLImageElement, { cover = false, step = 60 } = {}) {
+export function depixel(canvas: HTMLCanvasElement, img: HTMLImageElement, { cover = false, top = false, step = 60 } = {}) {
   return new Promise<void>((res) => {
-    if (reducedMotion()) { drawPixel(canvas, img, 1, cover); return res(); }
+    if (reducedMotion()) { drawPixel(canvas, img, 1, cover, top); return res(); }
     let i = 0;
     const tick = () => {
-      drawPixel(canvas, img, STEPS[i] * (canvas.width / 900 + 0.4), cover);
+      drawPixel(canvas, img, STEPS[i] * (canvas.width / 900 + 0.4), cover, top);
       if (++i < STEPS.length) setTimeout(tick, step); else res();
     };
     tick();
