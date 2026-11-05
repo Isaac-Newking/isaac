@@ -82,14 +82,16 @@ a { color: inherit }
 .coords, .scrollhint { position: absolute; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); font-family: var(--f-pixel); font-size: 11px; color: rgba(255,255,255,.6); font-variant-numeric: tabular-nums }
 .coords { left: var(--gutter) }
 .scrollhint { right: var(--gutter-r) }
-.title { position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%); will-change: transform, opacity;
+.title { position: absolute; z-index: 2; left: 50%; top: 46%; transform: translate(-50%, -50%); will-change: transform, opacity;
   mask-size: 160% 200%; mask-position: 50% 50%; mask-repeat: no-repeat; mask-clip: no-clip; -webkit-mask-size: 160% 200%; -webkit-mask-position: 50% 50%; -webkit-mask-repeat: no-repeat }
 .title h1 { margin: 0; font-family: var(--f-display); font-weight: 800; font-size: clamp(52px, 9vw, 148px); line-height: .82; letter-spacing: -.055em; white-space: nowrap; text-align: center }
 .title h1 span { display: block }
 .title .by { position: absolute; bottom: calc(100% - .02em); right: .4em; font-family: var(--f-display); font-weight: 600; font-size: clamp(12px, 1.45vw, 22px); letter-spacing: .2em; text-transform: uppercase; white-space: nowrap }
-.sticker { position: absolute; right: -.55em; top: 41%; font-family: var(--f-display); font-weight: 800; font-size: clamp(22px, 3.4vw, 52px); letter-spacing: -.03em; color: #000; background: #fff; padding: .02em .28em .06em; transform: rotate(-6deg);
-  box-shadow: 0 -3px 0 0 #fff, 0 3px 0 0 #fff, -3px 0 0 0 #fff, 3px 0 0 0 #fff, 6px 6px 0 0 rgba(255,255,255,.35) }
-.sticker::before { content: ""; position: absolute; inset: 3px; border: 1.5px solid #000 }
+/* "2026" sits in Isaac's pixel speech bubble (public/img/ui/year-bubble.png, 1541×646, transparent outside).
+   The bottom 84px of the artwork is the tail, so the text is centred in the body above it. */
+.sticker { position: absolute; right: -1.1em; top: 36%; width: 3.6em; aspect-ratio: 1541 / 646; display: grid; place-items: center; padding-bottom: 5.45%;
+  font-family: var(--f-display); font-weight: 800; font-size: clamp(22px, 3.4vw, 52px); line-height: 1; letter-spacing: -.03em; color: #111;
+  background: url(/img/ui/year-bubble.png) center / 100% 100% no-repeat }
 /* roles marquee: a plain bar, clean text, a small pixel spark between words */
 .band { position: absolute; left: 0; right: 0; top: 72%; overflow: hidden; padding: 12px 0; background: #141414 }
 .band .track { position: relative; display: flex; width: max-content; animation: marquee 36s linear infinite; font-family: var(--f-display); font-weight: 500; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; align-items: center; color: rgba(255,255,255,.9) }
