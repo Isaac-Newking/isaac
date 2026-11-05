@@ -496,8 +496,8 @@
   {
    "src": "/img/work/branding/eh-post1.jpg",
    "name": "Social, World Skin Health Day",
-   "w": 466,
-   "h": 580,
+   "w": 1200,
+   "h": 1500,
    "group": "Esorae Home",
    "bg": "#160f0b",
    "fg": "#f2eae4",
@@ -507,8 +507,8 @@
   {
    "src": "/img/work/branding/eh-post2.jpg",
    "name": "Social, Breakfast Is Served",
-   "w": 466,
-   "h": 580,
+   "w": 1200,
+   "h": 1500,
    "group": "Esorae Home",
    "bg": "#f2ebe1",
    "fg": "#291f12",
@@ -529,8 +529,8 @@
   {
    "src": "/img/work/branding/eh-post4.jpg",
    "name": "Social, Intentional Comfort",
-   "w": 466,
-   "h": 586,
+   "w": 1200,
+   "h": 1500,
    "group": "Esorae Home",
    "bg": "#16110b",
    "fg": "#f2ece4",
